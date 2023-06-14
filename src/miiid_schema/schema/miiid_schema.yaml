@@ -59,13 +59,13 @@ classes:
       entries:
         range: IntermicrobialInteraction
         multivalued: true
-        inlined: true
+        inlined_as_list: true
         description: >-
           An IntermicrobialInteraction object
 
 slots:
   id:
-    identifier: true
+    identifier: false
     slot_uri: schema:identifier
     range: uriorcurie
     description: A unique identifier for a thing
