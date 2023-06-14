@@ -1,0 +1,27 @@
+{
+  "template": "https://github.com/linkml/linkml-project-cookiecutter",
+  "commit": "ef7ff16925321a2abdbaa5a2ba5db8aa83ebf24f",
+  "checkout": null,
+  "context": {
+    "cookiecutter": {
+      "project_name": "miiid-schema",
+      "__project_slug": "miiid_schema",
+      "github_org": "FAIR-MI",
+      "__source_path": "src/miiid_schema/schema/miiid_schema.yaml",
+      "project_description": "Towards a Minimal Information about Intermicrobial Interaction Data schema",
+      "full_name": "Charlie Pauvert",
+      "email": "cpauvert@protonmail.com",
+      "__author": "Charlie Pauvert <cpauvert@protonmail.com>",
+      "license": "GNU GPL v3.0",
+      "main_schema_class": "IntermicrobialInteraction",
+      "create_python_classes": "Yes",
+      "use_schemasheets": "No",
+      "google_sheet_id": "1wVoaiFg47aT9YWNeRfTZ8tYHN8s8PAuDx5i2HUcDpvQ",
+      "google_sheet_tabs": "personinfo enums",
+      "__google_sheet_module": "personinfo_enums",
+      "github_token_for_pypi_deployment": "PYPI_PASSWORD",
+      "_template": "https://github.com/linkml/linkml-project-cookiecutter"
+    }
+  },
+  "directory": null
+}

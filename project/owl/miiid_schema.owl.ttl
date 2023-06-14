@@ -1,0 +1,150 @@
+@prefix IAO: <http://purl.obolibrary.org/obo/IAO_> .
+@prefix PATO: <http://purl.obolibrary.org/obo/PATO_> .
+@prefix linkml: <https://w3id.org/linkml/> .
+@prefix miiid_schema: <https://w3id.org/FAIR-MI/miiid-schema/> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix schema1: <http://schema.org/> .
+@prefix skos: <http://www.w3.org/2004/02/skos/core#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+
+<https://w3id.org/FAIR-MI/miiid-schema> a owl:Ontology ;
+    rdfs:label "miiid-schema" ;
+    IAO:0000700 miiid_schema:IntermicrobialInteractionCollection,
+        miiid_schema:NamedThing ;
+    linkml:id "https://w3id.org/FAIR-MI/miiid-schema" ;
+    linkml:imports "linkml:types" .
+
+linkml:SubsetDefinition a owl:Class .
+
+linkml:TypeDefinition a owl:Class .
+
+linkml:topValue a owl:DatatypeProperty ;
+    rdfs:label "value" .
+
+miiid_schema:IntermicrobialInteractionCollection a owl:Class,
+        linkml:ClassDefinition ;
+    rdfs:label "IntermicrobialInteractionCollection" ;
+    rdfs:subClassOf [ a owl:Restriction ;
+            owl:allValuesFrom miiid_schema:IntermicrobialInteraction ;
+            owl:onProperty miiid_schema:entries ] ;
+    skos:definition "A holder for IntermicrobialInteraction objects" .
+
+miiid_schema:age_in_years a owl:ObjectProperty,
+        linkml:SlotDefinition ;
+    rdfs:label "age_in_years" ;
+    rdfs:range linkml:Integer ;
+    skos:definition "Number of years since birth" .
+
+miiid_schema:entries a owl:ObjectProperty,
+        linkml:SlotDefinition ;
+    rdfs:label "entries" ;
+    rdfs:range miiid_schema:IntermicrobialInteraction .
+
+miiid_schema:vital_status a owl:ObjectProperty,
+        linkml:SlotDefinition ;
+    rdfs:label "vital_status" ;
+    rdfs:range miiid_schema:PersonStatus ;
+    skos:definition "living or dead status" .
+
+PATO:0001421 a owl:Class,
+        miiid_schema:PersonStatus ;
+    rdfs:label "ALIVE" .
+
+PATO:0001422 a owl:Class,
+        miiid_schema:PersonStatus ;
+    rdfs:label "DEAD" .
+
+schema1:birthDate a owl:ObjectProperty,
+        linkml:SlotDefinition ;
+    rdfs:label "birth_date" ;
+    rdfs:range linkml:Date ;
+    skos:definition "Date on which a person is born" ;
+    skos:exactMatch schema1:birthDate .
+
+schema1:description a owl:ObjectProperty,
+        linkml:SlotDefinition ;
+    rdfs:label "description" ;
+    rdfs:range linkml:String ;
+    skos:definition "A human-readable description for a thing" ;
+    skos:exactMatch schema1:description .
+
+schema1:email a owl:ObjectProperty,
+        linkml:SlotDefinition ;
+    rdfs:label "primary_email" ;
+    rdfs:range linkml:String ;
+    skos:definition "The main email address of a person" ;
+    skos:exactMatch schema1:email .
+
+schema1:identifier a owl:ObjectProperty,
+        linkml:SlotDefinition ;
+    rdfs:label "id" ;
+    rdfs:range linkml:Uriorcurie ;
+    skos:definition "A unique identifier for a thing" ;
+    skos:exactMatch schema1:identifier .
+
+schema1:name a owl:ObjectProperty,
+        linkml:SlotDefinition ;
+    rdfs:label "name" ;
+    rdfs:range linkml:String ;
+    skos:definition "A human-readable name for a thing" ;
+    skos:exactMatch schema1:name .
+
+miiid_schema:IntermicrobialInteraction a owl:Class,
+        linkml:ClassDefinition ;
+    rdfs:label "IntermicrobialInteraction" ;
+    rdfs:subClassOf [ a owl:Restriction ;
+            owl:maxQualifiedCardinality 1 ;
+            owl:onClass miiid_schema:PersonStatus ;
+            owl:onProperty miiid_schema:vital_status ],
+        [ a owl:Restriction ;
+            owl:maxQualifiedCardinality 1 ;
+            owl:onClass linkml:Date ;
+            owl:onProperty schema1:birthDate ],
+        [ a owl:Restriction ;
+            owl:maxQualifiedCardinality 1 ;
+            owl:onClass linkml:String ;
+            owl:onProperty schema1:email ],
+        [ a owl:Restriction ;
+            owl:maxQualifiedCardinality 1 ;
+            owl:onClass linkml:Integer ;
+            owl:onProperty miiid_schema:age_in_years ],
+        miiid_schema:NamedThing ;
+    skos:definition "Represents a IntermicrobialInteraction" .
+
+miiid_schema:NamedThing a owl:Class,
+        linkml:ClassDefinition ;
+    rdfs:label "NamedThing" ;
+    rdfs:subClassOf [ a owl:Restriction ;
+            owl:maxQualifiedCardinality 1 ;
+            owl:onClass linkml:String ;
+            owl:onProperty schema1:name ],
+        [ a owl:Restriction ;
+            owl:onClass linkml:Uriorcurie ;
+            owl:onProperty schema1:identifier ;
+            owl:qualifiedCardinality 1 ],
+        [ a owl:Restriction ;
+            owl:maxQualifiedCardinality 1 ;
+            owl:onClass linkml:String ;
+            owl:onProperty schema1:description ] ;
+    skos:definition "A generic grouping for any identifiable entity" ;
+    skos:exactMatch schema1:Thing .
+
+<https://w3id.org/FAIR-MI/miiid-schema/PersonStatus#UNKNOWN> a owl:Class,
+        miiid_schema:PersonStatus ;
+    rdfs:label "UNKNOWN" .
+
+linkml:ClassDefinition a owl:Class .
+
+miiid_schema:PersonStatus a owl:Class,
+        linkml:EnumDefinition ;
+    rdfs:label "PersonStatus" ;
+    owl:unionOf ( PATO:0001421 PATO:0001422 <https://w3id.org/FAIR-MI/miiid-schema/PersonStatus#UNKNOWN> ) ;
+    linkml:permissible_values PATO:0001421,
+        PATO:0001422,
+        <https://w3id.org/FAIR-MI/miiid-schema/PersonStatus#UNKNOWN> .
+
+linkml:SlotDefinition a owl:Class .
+
+

@@ -1,0 +1,7 @@
+---
+name: miiid_schema
+author: Charlie Pauvert <cpauvert@protonmail.com>
+description: Towards a Minimal Information about Intermicrobial Interaction Data schema
+source_schema_path: src/miiid_schema/schema/miiid_schema.yaml
+google_sheet_id: 1wVoaiFg47aT9YWNeRfTZ8tYHN8s8PAuDx5i2HUcDpvQ
+google_sheet_tabs: personinfo enums

@@ -1,0 +1,23 @@
+type IntermicrobialInteraction
+  {
+    id: Uriorcurie!
+    name: String
+    description: String
+    primaryEmail: String
+    birthDate: Date
+    ageInYears: Integer
+    vitalStatus: PersonStatus
+  }
+
+type IntermicrobialInteractionCollection
+  {
+    entries: [IntermicrobialInteraction]
+  }
+
+type NamedThing
+  {
+    id: Uriorcurie!
+    name: String
+    description: String
+  }
+
