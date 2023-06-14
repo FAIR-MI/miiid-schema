@@ -36,6 +36,11 @@ classes:
     slots:
       - name
       - tax_id
+    slot_usage:
+      name:
+        identifier: true
+        required: true
+        description: Name of the microbial entity, with descriptions of any genetic manipulations performed.
 
   IntermicrobialInteraction:
     is_a: NamedThing
@@ -74,11 +79,11 @@ slots:
     range: Participant
     multivalued: true
     required: true
-    description: Names of the microbial entity name, with descriptions of any genetic manipulations performed.
+    description: List of the microbial entities engaging in an intermicrobial interaction
   tax_id:
     required: true
     range: string
-    description: Identifiers from the NCBI Taxonomy at the relevant taxonomic level. Novel taxa lacking identifiers are denoted by N/A.
+    description: NCBI Taxonomy identifier at the relevant taxonomic level. Novel taxa lacking identifiers are denoted by N/A.
   evidence_type:
     required: true
     range: string
