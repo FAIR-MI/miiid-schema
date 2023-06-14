@@ -2,6 +2,10 @@
 ---
 entries:
   - id: example:IntermicrobialInteraction001
-    name: foo bar
-    primary_email: foo.bar@example.com
-    age_in_years: 33
+    participants:
+      - name: Acidobacteria
+        tax_id: 57723
+      - name: Gammaproteobacteria
+        tax_id: 1236
+    evidence_type: high throughput evidence used in automatic assertion
+    reference: https://doi.org/10.1038/ismej.2011.119

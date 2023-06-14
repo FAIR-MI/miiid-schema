@@ -71,10 +71,9 @@ slots:
     slot_uri: schema:description
     description: A human-readable description for a thing
   participants:
-    is_a: Participant
+    range: Participant
     multivalued: true
     required: true
-    range: string
     description: Names of the microbial entity name, with descriptions of any genetic manipulations performed.
   tax_id:
     required: true
