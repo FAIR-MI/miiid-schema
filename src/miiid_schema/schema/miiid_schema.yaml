@@ -9,10 +9,10 @@ see_also:
   - https://FAIR-MI.github.io/miiid-schema
 
 prefixes:
-  miiid_schema: https://w3id.org/FAIR-MI/miiid-schema/
+  miiid: https://w3id.org/FAIR-MI/miiid/
   linkml: https://w3id.org/linkml/
   schema: http://schema.org/
-default_prefix: miiid_schema
+default_prefix: miiid
 default_range: string
 
 imports:
