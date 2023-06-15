@@ -1,0 +1,14 @@
+# Example of a tripartite interaction
+---
+entries:
+  - id: example:Tripartite
+    participants:
+      - Azotobacter vinelandii DSM 85
+      - Chlamydomonas reinhardtii strain 187
+      - Alternaria sp. GYI-051221
+    tax_id:
+      - 354
+      - 3055
+      - 667197
+    evidence_type: experimental evidence used in manual assertion
+    reference: https://doi.org/10.1007/s12223-010-0067-9
