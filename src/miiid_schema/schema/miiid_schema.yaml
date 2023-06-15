@@ -65,12 +65,12 @@ slots:
     description: A human-readable description for a thing
   participants:
     required: true
-    range: string
+    range: string # TODO Create a dedicated Type https://linkml.io/linkml/schemas/models.html#types
     multivalued: true
     description: Names of the microbial entities, with descriptions of any genetic manipulations performed.
   tax_id:
     required: true
-    range: string
+    range: integer # TODO map to NCBITaxon ontology or create a dedicated type
     multivalued: true
     description: NCBI Taxonomy identifiers at the relevant taxonomic level. Novel taxa lacking identifiers are denoted by N/A.
   evidence_type:
