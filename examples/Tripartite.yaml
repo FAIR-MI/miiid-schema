@@ -1,7 +1,7 @@
 # Example of a tripartite interaction
 ---
 entries:
-  - id: example:Tripartite
+  - id: miiid_schema:Tripartite
     participants:
       - Azotobacter vinelandii DSM 85
       - Chlamydomonas reinhardtii strain 187

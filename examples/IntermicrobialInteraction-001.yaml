@@ -1,7 +1,7 @@
 # Example data object
 ---
 entries:
-  - id: example:IntermicrobialInteraction001
+  - id: miiid_schema:IntermicrobialInteraction001
     participants:
       - Acidobacteria
       - Gammaproteobacteria
