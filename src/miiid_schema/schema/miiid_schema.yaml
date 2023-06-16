@@ -13,7 +13,7 @@ prefixes:
   linkml: https://w3id.org/linkml/
   schema: http://schema.org/
   obo: http://purl.obolibrary.org/obo/
-  ncbitaxon: http://purl.obolibrary.org/obo/NCBITaxon_
+  NCBITaxon: http://purl.obolibrary.org/obo/NCBITaxon_
 default_prefix: miiid
 default_range: string
 
