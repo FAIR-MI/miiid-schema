@@ -12,6 +12,8 @@ prefixes:
   miiid: https://w3id.org/FAIR-MI/miiid/
   linkml: https://w3id.org/linkml/
   schema: http://schema.org/
+  obo: http://purl.obolibrary.org/obo/
+  ncbitaxon: http://purl.obolibrary.org/obo/NCBITaxon_
 default_prefix: miiid
 default_range: string
 
@@ -70,7 +72,7 @@ slots:
     description: Names of the microbial entities, with descriptions of any genetic manipulations performed.
   tax_id:
     required: true
-    range: integer # TODO map to NCBITaxon ontology or create a dedicated type
+    range: TaxIdEnum
     multivalued: true
     description: NCBI Taxonomy identifiers at the relevant taxonomic level. Novel taxa lacking identifiers are denoted by N/A.
   evidence_type:
@@ -82,3 +84,13 @@ slots:
     slot_uri: schema:url
     description: Persistent identifier (e.g. DOI or URL) to a resource, script, or article, documenting the method.
 
+
+enums:
+  TaxIdEnum:
+    reachable_from:
+      source_ontology: obo:ncbitaxon
+      source_nodes:
+        - NCBITaxon:1
+      include_self: false
+      relationship_types:
+        - rdfs:subClassOf
