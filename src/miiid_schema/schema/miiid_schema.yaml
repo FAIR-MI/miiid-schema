@@ -87,6 +87,8 @@ slots:
 
 enums:
   TaxIdEnum:
+    description: >-
+      Mapping the NCBI Taxonomy identifiers to the NCBITaxon ontology
     reachable_from:
       source_ontology: obo:ncbitaxon
       source_nodes:
