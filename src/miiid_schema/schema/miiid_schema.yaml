@@ -80,7 +80,8 @@ slots:
     description: Type of evidence used to determine the interaction using the Evidence and Conclusion Ontology.
   reference:
     required: true
-    slot_uri: schema:url
+    exact_mappings:
+      - schema:url
     description: Persistent identifier (e.g. DOI or URL) to a resource, script, or article, documenting the method.
 
 
