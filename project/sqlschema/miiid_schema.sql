@@ -4,10 +4,8 @@ CREATE TABLE "IntermicrobialInteraction" (
 	id TEXT NOT NULL, 
 	name TEXT, 
 	description TEXT, 
-	primary_email TEXT, 
-	birth_date DATE, 
-	age_in_years INTEGER, 
-	vital_status VARCHAR(7), 
+	evidence_type TEXT NOT NULL, 
+	reference TEXT NOT NULL, 
 	PRIMARY KEY (id)
 );
 
@@ -21,4 +19,18 @@ CREATE TABLE "NamedThing" (
 	name TEXT, 
 	description TEXT, 
 	PRIMARY KEY (id)
+);
+
+CREATE TABLE "IntermicrobialInteraction_participants" (
+	backref_id TEXT, 
+	participants TEXT NOT NULL, 
+	PRIMARY KEY (backref_id, participants), 
+	FOREIGN KEY(backref_id) REFERENCES "IntermicrobialInteraction" (id)
+);
+
+CREATE TABLE "IntermicrobialInteraction_tax_id" (
+	backref_id TEXT, 
+	tax_id INTEGER NOT NULL, 
+	PRIMARY KEY (backref_id, tax_id), 
+	FOREIGN KEY(backref_id) REFERENCES "IntermicrobialInteraction" (id)
 );

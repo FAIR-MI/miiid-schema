@@ -1,6 +1,6 @@
 {
   "name": "miiid-schema",
-  "description": "Towards a Minimal Information about Intermicrobial Interaction Data schema",
+  "description": "Minimal Information about Intermicrobial Interaction Data schema",
   "title": "miiid-schema",
   "see_also": [
     "https://FAIR-MI.github.io/miiid-schema"
@@ -12,33 +12,48 @@
   "license": "GNU GPL v3.0",
   "prefixes": [
     {
-      "prefix_prefix": "miiid_schema",
-      "prefix_reference": "https://w3id.org/FAIR-MI/miiid-schema/"
+      "prefix_prefix": "miiid",
+      "prefix_reference": "https://w3id.org/FAIR-MI/miiid/"
     },
     {
       "prefix_prefix": "linkml",
       "prefix_reference": "https://w3id.org/linkml/"
     },
     {
-      "prefix_prefix": "biolink",
-      "prefix_reference": "https://w3id.org/biolink/"
-    },
-    {
       "prefix_prefix": "schema",
       "prefix_reference": "http://schema.org/"
     },
     {
-      "prefix_prefix": "PATO",
-      "prefix_reference": "http://purl.obolibrary.org/obo/PATO_"
-    },
-    {
-      "prefix_prefix": "example",
-      "prefix_reference": "https://example.org/"
+      "prefix_prefix": "WIKIDATA_PROPERTY",
+      "prefix_reference": "https://www.wikidata.org/prop/"
     }
   ],
-  "default_prefix": "miiid_schema",
+  "default_prefix": "miiid",
   "default_range": "string",
   "types": [
+    {
+      "name": "NCBITaxId",
+      "definition_uri": "https://w3id.org/FAIR-MI/miiid/NCBITaxId",
+      "description": "Numeric identifier following the NCBI Taxonomy schema.",
+      "examples": [
+        {
+          "value": "1043002",
+          "@type": "Example"
+        },
+        {
+          "value": "1236",
+          "@type": "Example"
+        }
+      ],
+      "from_schema": "https://w3id.org/FAIR-MI/miiid-schema",
+      "exact_mappings": [
+        "WIKIDATA_PROPERTY:P685"
+      ],
+      "base": "int",
+      "uri": "http://www.w3.org/2001/XMLSchema#integer",
+      "minimum_value": 2,
+      "@type": "TypeDefinition"
+    },
     {
       "name": "string",
       "definition_uri": "https://w3id.org/linkml/String",
@@ -257,38 +272,48 @@
       "uri": "http://www.w3.org/ns/shex#nonLiteral",
       "repr": "str",
       "@type": "TypeDefinition"
-    }
-  ],
-  "enums": [
+    },
     {
-      "name": "PersonStatus",
-      "definition_uri": "https://w3id.org/FAIR-MI/miiid-schema/PersonStatus",
-      "from_schema": "https://w3id.org/FAIR-MI/miiid-schema",
-      "permissible_values": [
-        {
-          "text": "ALIVE",
-          "description": "the person is living",
-          "meaning": "PATO:0001421"
-        },
-        {
-          "text": "DEAD",
-          "description": "the person is deceased",
-          "meaning": "PATO:0001422"
-        },
-        {
-          "text": "UNKNOWN",
-          "description": "the vital status is not known",
-          "todos": [
-            "map this to an ontology"
-          ]
-        }
-      ]
+      "name": "jsonpointer",
+      "definition_uri": "https://w3id.org/linkml/Jsonpointer",
+      "conforms_to": "https://datatracker.ietf.org/doc/html/rfc6901",
+      "description": "A string encoding a JSON Pointer. The value of the string MUST conform to JSON Point syntax and SHOULD dereference to a valid object within the current instance document when encoded in tree form.",
+      "from_schema": "https://w3id.org/linkml/types",
+      "imported_from": "linkml:types",
+      "base": "str",
+      "uri": "http://www.w3.org/2001/XMLSchema#string",
+      "repr": "str",
+      "@type": "TypeDefinition"
+    },
+    {
+      "name": "jsonpath",
+      "definition_uri": "https://w3id.org/linkml/Jsonpath",
+      "conforms_to": "https://www.ietf.org/archive/id/draft-goessner-dispatch-jsonpath-00.html",
+      "description": "A string encoding a JSON Path. The value of the string MUST conform to JSON Point syntax and SHOULD dereference to zero or more valid objects within the current instance document when encoded in tree form.",
+      "from_schema": "https://w3id.org/linkml/types",
+      "imported_from": "linkml:types",
+      "base": "str",
+      "uri": "http://www.w3.org/2001/XMLSchema#string",
+      "repr": "str",
+      "@type": "TypeDefinition"
+    },
+    {
+      "name": "sparqlpath",
+      "definition_uri": "https://w3id.org/linkml/Sparqlpath",
+      "conforms_to": "https://www.w3.org/TR/sparql11-query/#propertypaths",
+      "description": "A string encoding a SPARQL Property Path. The value of the string MUST conform to SPARQL syntax and SHOULD dereference to zero or more valid objects within the current instance document when encoded as RDF.",
+      "from_schema": "https://w3id.org/linkml/types",
+      "imported_from": "linkml:types",
+      "base": "str",
+      "uri": "http://www.w3.org/2001/XMLSchema#string",
+      "repr": "str",
+      "@type": "TypeDefinition"
     }
   ],
   "slots": [
     {
       "name": "id",
-      "definition_uri": "https://w3id.org/FAIR-MI/miiid-schema/id",
+      "definition_uri": "https://w3id.org/FAIR-MI/miiid/id",
       "description": "A unique identifier for a thing",
       "from_schema": "https://w3id.org/FAIR-MI/miiid-schema",
       "mappings": [
@@ -306,7 +331,7 @@
     },
     {
       "name": "name",
-      "definition_uri": "https://w3id.org/FAIR-MI/miiid-schema/name",
+      "definition_uri": "https://w3id.org/FAIR-MI/miiid/name",
       "description": "A human-readable name for a thing",
       "from_schema": "https://w3id.org/FAIR-MI/miiid-schema",
       "mappings": [
@@ -322,7 +347,7 @@
     },
     {
       "name": "description",
-      "definition_uri": "https://w3id.org/FAIR-MI/miiid-schema/description",
+      "definition_uri": "https://w3id.org/FAIR-MI/miiid/description",
       "description": "A human-readable description for a thing",
       "from_schema": "https://w3id.org/FAIR-MI/miiid-schema",
       "mappings": [
@@ -337,67 +362,71 @@
       "@type": "SlotDefinition"
     },
     {
-      "name": "primary_email",
-      "definition_uri": "https://w3id.org/FAIR-MI/miiid-schema/primary_email",
-      "description": "The main email address of a person",
+      "name": "participants",
+      "definition_uri": "https://w3id.org/FAIR-MI/miiid/participants",
+      "description": "Names of the microbial entities, with descriptions of any genetic manipulations performed.",
       "from_schema": "https://w3id.org/FAIR-MI/miiid-schema",
-      "mappings": [
-        "http://schema.org/email"
-      ],
-      "slot_uri": "http://schema.org/email",
+      "slot_uri": "https://w3id.org/FAIR-MI/miiid/participants",
+      "multivalued": true,
       "owner": "IntermicrobialInteraction",
       "domain_of": [
         "IntermicrobialInteraction"
       ],
       "range": "string",
+      "required": true,
       "@type": "SlotDefinition"
     },
     {
-      "name": "birth_date",
-      "definition_uri": "https://w3id.org/FAIR-MI/miiid-schema/birth_date",
-      "description": "Date on which a person is born",
+      "name": "tax_id",
+      "definition_uri": "https://w3id.org/FAIR-MI/miiid/tax_id",
+      "description": "NCBI Taxonomy identifiers at the relevant taxonomic level. Novel taxa lacking identifiers are denoted by N/A.",
       "from_schema": "https://w3id.org/FAIR-MI/miiid-schema",
-      "mappings": [
-        "http://schema.org/birthDate"
-      ],
-      "slot_uri": "http://schema.org/birthDate",
+      "slot_uri": "https://w3id.org/FAIR-MI/miiid/tax_id",
+      "multivalued": true,
       "owner": "IntermicrobialInteraction",
       "domain_of": [
         "IntermicrobialInteraction"
       ],
-      "range": "date",
+      "range": "NCBITaxId",
+      "required": true,
       "@type": "SlotDefinition"
     },
     {
-      "name": "age_in_years",
-      "definition_uri": "https://w3id.org/FAIR-MI/miiid-schema/age_in_years",
-      "description": "Number of years since birth",
+      "name": "evidence_type",
+      "definition_uri": "https://w3id.org/FAIR-MI/miiid/evidence_type",
+      "description": "Type of evidence used to determine the interaction using the Evidence and Conclusion Ontology.",
       "from_schema": "https://w3id.org/FAIR-MI/miiid-schema",
-      "slot_uri": "https://w3id.org/FAIR-MI/miiid-schema/age_in_years",
+      "slot_uri": "https://w3id.org/FAIR-MI/miiid/evidence_type",
       "owner": "IntermicrobialInteraction",
       "domain_of": [
         "IntermicrobialInteraction"
       ],
-      "range": "integer",
+      "range": "string",
+      "required": true,
       "@type": "SlotDefinition"
     },
     {
-      "name": "vital_status",
-      "definition_uri": "https://w3id.org/FAIR-MI/miiid-schema/vital_status",
-      "description": "living or dead status",
+      "name": "reference",
+      "definition_uri": "https://w3id.org/FAIR-MI/miiid/reference",
+      "description": "Persistent identifier (e.g. DOI or URL) to a resource, script, or article, documenting the method.",
       "from_schema": "https://w3id.org/FAIR-MI/miiid-schema",
-      "slot_uri": "https://w3id.org/FAIR-MI/miiid-schema/vital_status",
+      "exact_mappings": [
+        "http://schema.org/url"
+      ],
+      "slot_uri": "https://w3id.org/FAIR-MI/miiid/reference",
       "owner": "IntermicrobialInteraction",
       "domain_of": [
         "IntermicrobialInteraction"
       ],
-      "range": "PersonStatus",
+      "range": "string",
+      "required": true,
       "@type": "SlotDefinition"
     },
     {
       "name": "intermicrobialInteractionCollection__entries",
+      "description": "An IntermicrobialInteraction object",
       "from_schema": "https://w3id.org/FAIR-MI/miiid-schema",
-      "slot_uri": "https://w3id.org/FAIR-MI/miiid-schema/entries",
+      "slot_uri": "https://w3id.org/FAIR-MI/miiid/entries",
       "multivalued": true,
       "alias": "entries",
       "owner": "IntermicrobialInteractionCollection",
@@ -406,35 +435,14 @@
       ],
       "range": "IntermicrobialInteraction",
       "inlined": true,
-      "@type": "SlotDefinition"
-    },
-    {
-      "name": "IntermicrobialInteraction_primary_email",
-      "definition_uri": "https://w3id.org/FAIR-MI/miiid-schema/primary_email",
-      "description": "The main email address of a person",
-      "from_schema": "https://w3id.org/FAIR-MI/miiid-schema",
-      "mappings": [
-        "http://schema.org/email"
-      ],
-      "is_a": "primary_email",
-      "domain": "IntermicrobialInteraction",
-      "slot_uri": "http://schema.org/email",
-      "alias": "primary_email",
-      "owner": "IntermicrobialInteraction",
-      "domain_of": [
-        "IntermicrobialInteraction"
-      ],
-      "is_usage_slot": true,
-      "usage_slot_name": "primary_email",
-      "range": "string",
-      "pattern": "^\\S+@[\\S+\\.]+\\S+",
+      "inlined_as_list": true,
       "@type": "SlotDefinition"
     }
   ],
   "classes": [
     {
       "name": "NamedThing",
-      "definition_uri": "https://w3id.org/FAIR-MI/miiid-schema/NamedThing",
+      "definition_uri": "https://w3id.org/FAIR-MI/miiid/NamedThing",
       "description": "A generic grouping for any identifiable entity",
       "from_schema": "https://w3id.org/FAIR-MI/miiid-schema",
       "mappings": [
@@ -451,26 +459,26 @@
     },
     {
       "name": "IntermicrobialInteraction",
-      "definition_uri": "https://w3id.org/FAIR-MI/miiid-schema/IntermicrobialInteraction",
-      "description": "Represents a IntermicrobialInteraction",
+      "definition_uri": "https://w3id.org/FAIR-MI/miiid/IntermicrobialInteraction",
+      "description": "Represents an interaction between microbial entities",
       "from_schema": "https://w3id.org/FAIR-MI/miiid-schema",
       "is_a": "NamedThing",
       "slots": [
         "id",
         "name",
         "description",
-        "IntermicrobialInteraction_primary_email",
-        "birth_date",
-        "age_in_years",
-        "vital_status"
+        "participants",
+        "tax_id",
+        "evidence_type",
+        "reference"
       ],
       "slot_usage": {},
-      "class_uri": "https://w3id.org/FAIR-MI/miiid-schema/IntermicrobialInteraction",
+      "class_uri": "https://w3id.org/FAIR-MI/miiid/IntermicrobialInteraction",
       "@type": "ClassDefinition"
     },
     {
       "name": "IntermicrobialInteractionCollection",
-      "definition_uri": "https://w3id.org/FAIR-MI/miiid-schema/IntermicrobialInteractionCollection",
+      "definition_uri": "https://w3id.org/FAIR-MI/miiid/IntermicrobialInteractionCollection",
       "description": "A holder for IntermicrobialInteraction objects",
       "from_schema": "https://w3id.org/FAIR-MI/miiid-schema",
       "slots": [
@@ -480,28 +488,29 @@
       "attributes": [
         {
           "name": "entries",
+          "description": "An IntermicrobialInteraction object",
           "multivalued": true,
           "range": "IntermicrobialInteraction",
-          "inlined": true,
+          "inlined_as_list": true,
           "@type": "SlotDefinition"
         }
       ],
-      "class_uri": "https://w3id.org/FAIR-MI/miiid-schema/IntermicrobialInteractionCollection",
+      "class_uri": "https://w3id.org/FAIR-MI/miiid/IntermicrobialInteractionCollection",
       "tree_root": true,
       "@type": "ClassDefinition"
     }
   ],
   "metamodel_version": "1.7.0",
   "source_file": "miiid_schema.yaml",
-  "source_file_date": "2023-06-14T13:56:26",
-  "source_file_size": 2325,
-  "generation_date": "2023-06-14T13:56:46",
+  "source_file_date": "2023-06-20T16:44:02",
+  "source_file_size": 2699,
+  "generation_date": "2023-06-20T17:04:24",
   "@type": "SchemaDefinition",
   "@context": [
     "project/jsonld/miiid_schema.context.jsonld",
     "https://w3id.org/linkml/types.context.jsonld",
     {
-      "@base": "https://w3id.org/FAIR-MI/miiid-schema/"
+      "@base": "https://w3id.org/FAIR-MI/miiid/"
     }
   ]
 }

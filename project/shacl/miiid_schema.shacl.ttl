@@ -1,5 +1,4 @@
-@prefix PATO: <http://purl.obolibrary.org/obo/PATO_> .
-@prefix miiid_schema: <https://w3id.org/FAIR-MI/miiid-schema/> .
+@prefix miiid: <https://w3id.org/FAIR-MI/miiid/> .
 @prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
 @prefix schema1: <http://schema.org/> .
 @prefix sh: <http://www.w3.org/ns/shacl#> .
@@ -9,64 +8,65 @@ schema1:Thing a sh:NodeShape ;
     sh:closed true ;
     sh:description "A generic grouping for any identifiable entity" ;
     sh:ignoredProperties ( rdf:type ) ;
-    sh:property [ sh:description "A human-readable name for a thing" ;
-            sh:maxCount 1 ;
-            sh:order 1 ;
-            sh:path schema1:name ],
-        [ sh:description "A human-readable description for a thing" ;
+    sh:property [ sh:description "A human-readable description for a thing" ;
             sh:maxCount 1 ;
             sh:order 2 ;
             sh:path schema1:description ],
         [ sh:description "A unique identifier for a thing" ;
             sh:maxCount 1 ;
             sh:order 0 ;
-            sh:path schema1:identifier ] ;
+            sh:path schema1:identifier ],
+        [ sh:description "A human-readable name for a thing" ;
+            sh:maxCount 1 ;
+            sh:order 1 ;
+            sh:path schema1:name ] ;
     sh:targetClass schema1:Thing .
 
-miiid_schema:IntermicrobialInteractionCollection a sh:NodeShape ;
+miiid:IntermicrobialInteractionCollection a sh:NodeShape ;
     sh:closed true ;
     sh:description "A holder for IntermicrobialInteraction objects" ;
     sh:ignoredProperties ( rdf:type ) ;
-    sh:property [ sh:class miiid_schema:IntermicrobialInteraction ;
+    sh:property [ sh:class miiid:IntermicrobialInteraction ;
+            sh:description "An IntermicrobialInteraction object" ;
             sh:nodeKind sh:IRI ;
             sh:order 0 ;
-            sh:path miiid_schema:entries ] ;
-    sh:targetClass miiid_schema:IntermicrobialInteractionCollection .
+            sh:path miiid:entries ] ;
+    sh:targetClass miiid:IntermicrobialInteractionCollection .
 
-miiid_schema:IntermicrobialInteraction a sh:NodeShape ;
+miiid:IntermicrobialInteraction a sh:NodeShape ;
     sh:closed true ;
-    sh:description "Represents a IntermicrobialInteraction" ;
+    sh:description "Represents an interaction between microbial entities" ;
     sh:ignoredProperties ( rdf:type ) ;
-    sh:property [ sh:description "Date on which a person is born" ;
-            sh:maxCount 1 ;
-            sh:order 1 ;
-            sh:path schema1:birthDate ],
-        [ sh:description "Number of years since birth" ;
-            sh:maxCount 1 ;
-            sh:order 2 ;
-            sh:path miiid_schema:age_in_years ],
-        [ sh:description "A human-readable name for a thing" ;
-            sh:maxCount 1 ;
-            sh:order 5 ;
-            sh:path schema1:name ],
-        [ sh:description "A unique identifier for a thing" ;
+    sh:property [ sh:description "A unique identifier for a thing" ;
             sh:maxCount 1 ;
             sh:minCount 1 ;
             sh:order 4 ;
             sh:path schema1:identifier ],
-        [ sh:description "The main email address of a person" ;
+        [ sh:description "A human-readable name for a thing" ;
             sh:maxCount 1 ;
+            sh:order 5 ;
+            sh:path schema1:name ],
+        [ sh:description "Names of the microbial entities, with descriptions of any genetic manipulations performed." ;
+            sh:minCount 1 ;
             sh:order 0 ;
-            sh:path schema1:email ;
-            sh:pattern "^\\S+@[\\S+\\.]+\\S+" ],
-        [ sh:description "living or dead status" ;
-            sh:in ( PATO:0001421 PATO:0001422 "UNKNOWN" ) ;
+            sh:path miiid:participants ],
+        [ sh:description "Type of evidence used to determine the interaction using the Evidence and Conclusion Ontology." ;
             sh:maxCount 1 ;
-            sh:order 3 ;
-            sh:path miiid_schema:vital_status ],
+            sh:minCount 1 ;
+            sh:order 2 ;
+            sh:path miiid:evidence_type ],
         [ sh:description "A human-readable description for a thing" ;
             sh:maxCount 1 ;
             sh:order 6 ;
-            sh:path schema1:description ] ;
-    sh:targetClass miiid_schema:IntermicrobialInteraction .
+            sh:path schema1:description ],
+        [ sh:description "Persistent identifier (e.g. DOI or URL) to a resource, script, or article, documenting the method." ;
+            sh:maxCount 1 ;
+            sh:minCount 1 ;
+            sh:order 3 ;
+            sh:path miiid:reference ],
+        [ sh:description "NCBI Taxonomy identifiers at the relevant taxonomic level. Novel taxa lacking identifiers are denoted by N/A." ;
+            sh:minCount 1 ;
+            sh:order 1 ;
+            sh:path miiid:tax_id ] ;
+    sh:targetClass miiid:IntermicrobialInteraction .
 

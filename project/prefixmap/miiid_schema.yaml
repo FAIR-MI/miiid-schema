@@ -1,9 +1,7 @@
 {
-   "PATO": "http://purl.obolibrary.org/obo/PATO_",
-   "biolink": "https://w3id.org/biolink/",
-   "example": "https://example.org/",
+   "WIKIDATA_PROPERTY": "https://www.wikidata.org/prop/",
    "linkml": "https://w3id.org/linkml/",
-   "miiid_schema": "https://w3id.org/FAIR-MI/miiid-schema/",
+   "miiid": "https://w3id.org/FAIR-MI/miiid/",
    "schema": "http://schema.org/",
    "NamedThing": {
       "@id": "schema:Thing"

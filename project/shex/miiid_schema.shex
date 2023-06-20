@@ -1,9 +1,11 @@
-BASE <https://w3id.org/FAIR-MI/miiid-schema/>
+BASE <https://w3id.org/FAIR-MI/miiid/>
 PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
 PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
 PREFIX linkml: <https://w3id.org/linkml/>
 PREFIX schema1: <http://schema.org/>
 
+
+<NCBITaxId> xsd:integer
 
 linkml:String xsd:string
 
@@ -37,13 +39,19 @@ linkml:Objectidentifier IRI
 
 linkml:Nodeidentifier NONLITERAL
 
+linkml:Jsonpointer xsd:string
+
+linkml:Jsonpath xsd:string
+
+linkml:Sparqlpath xsd:string
+
 <IntermicrobialInteraction> CLOSED {
     (  $<IntermicrobialInteraction_tes> (  &<NamedThing_tes> ;
           rdf:type [ schema1:Thing ] ? ;
-          schema1:email @linkml:String ? ;
-          schema1:birthDate @linkml:Date ? ;
-          <age_in_years> @linkml:Integer ? ;
-          <vital_status> @<PersonStatus> ?
+          <participants> @linkml:String + ;
+          <tax_id> @<NCBITaxId> + ;
+          <evidence_type> @linkml:String ;
+          <reference> @linkml:String
        ) ;
        rdf:type [ <IntermicrobialInteraction> ]
     )

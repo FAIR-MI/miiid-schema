@@ -2,19 +2,14 @@
     "$defs": {
         "IntermicrobialInteraction": {
             "additionalProperties": false,
-            "description": "Represents a IntermicrobialInteraction",
+            "description": "Represents an interaction between microbial entities",
             "properties": {
-                "age_in_years": {
-                    "description": "Number of years since birth",
-                    "type": "integer"
-                },
-                "birth_date": {
-                    "description": "Date on which a person is born",
-                    "format": "date",
-                    "type": "string"
-                },
                 "description": {
                     "description": "A human-readable description for a thing",
+                    "type": "string"
+                },
+                "evidence_type": {
+                    "description": "Type of evidence used to determine the interaction using the Evidence and Conclusion Ontology.",
                     "type": "string"
                 },
                 "id": {
@@ -25,17 +20,30 @@
                     "description": "A human-readable name for a thing",
                     "type": "string"
                 },
-                "primary_email": {
-                    "description": "The main email address of a person",
-                    "pattern": "^\\S+@[\\S+\\.]+\\S+",
+                "participants": {
+                    "description": "Names of the microbial entities, with descriptions of any genetic manipulations performed.",
+                    "items": {
+                        "type": "string"
+                    },
+                    "type": "array"
+                },
+                "reference": {
+                    "description": "Persistent identifier (e.g. DOI or URL) to a resource, script, or article, documenting the method.",
                     "type": "string"
                 },
-                "vital_status": {
-                    "$ref": "#/$defs/PersonStatus",
-                    "description": "living or dead status"
+                "tax_id": {
+                    "description": "NCBI Taxonomy identifiers at the relevant taxonomic level. Novel taxa lacking identifiers are denoted by N/A.",
+                    "items": {
+                        "type": "integer"
+                    },
+                    "type": "array"
                 }
             },
             "required": [
+                "participants",
+                "tax_id",
+                "evidence_type",
+                "reference",
                 "id"
             ],
             "title": "IntermicrobialInteraction",
@@ -46,59 +54,14 @@
             "description": "A holder for IntermicrobialInteraction objects",
             "properties": {
                 "entries": {
-                    "additionalProperties": {
-                        "anyOf": [
-                            {
-                                "$ref": "#/$defs/IntermicrobialInteraction__identifier_optional"
-                            },
-                            {
-                                "type": "null"
-                            }
-                        ]
+                    "description": "An IntermicrobialInteraction object",
+                    "items": {
+                        "$ref": "#/$defs/IntermicrobialInteraction"
                     },
-                    "type": "object"
+                    "type": "array"
                 }
             },
             "title": "IntermicrobialInteractionCollection",
-            "type": "object"
-        },
-        "IntermicrobialInteraction__identifier_optional": {
-            "additionalProperties": false,
-            "description": "Represents a IntermicrobialInteraction",
-            "properties": {
-                "age_in_years": {
-                    "description": "Number of years since birth",
-                    "type": "integer"
-                },
-                "birth_date": {
-                    "description": "Date on which a person is born",
-                    "format": "date",
-                    "type": "string"
-                },
-                "description": {
-                    "description": "A human-readable description for a thing",
-                    "type": "string"
-                },
-                "id": {
-                    "description": "A unique identifier for a thing",
-                    "type": "string"
-                },
-                "name": {
-                    "description": "A human-readable name for a thing",
-                    "type": "string"
-                },
-                "primary_email": {
-                    "description": "The main email address of a person",
-                    "pattern": "^\\S+@[\\S+\\.]+\\S+",
-                    "type": "string"
-                },
-                "vital_status": {
-                    "$ref": "#/$defs/PersonStatus",
-                    "description": "living or dead status"
-                }
-            },
-            "required": [],
-            "title": "IntermicrobialInteraction",
             "type": "object"
         },
         "NamedThing": {
@@ -123,16 +86,6 @@
             ],
             "title": "NamedThing",
             "type": "object"
-        },
-        "PersonStatus": {
-            "description": "",
-            "enum": [
-                "ALIVE",
-                "DEAD",
-                "UNKNOWN"
-            ],
-            "title": "PersonStatus",
-            "type": "string"
         }
     },
     "$id": "https://w3id.org/FAIR-MI/miiid-schema",
@@ -142,17 +95,11 @@
     "metamodel_version": "1.7.0",
     "properties": {
         "entries": {
-            "additionalProperties": {
-                "anyOf": [
-                    {
-                        "$ref": "#/$defs/IntermicrobialInteraction__identifier_optional"
-                    },
-                    {
-                        "type": "null"
-                    }
-                ]
+            "description": "An IntermicrobialInteraction object",
+            "items": {
+                "$ref": "#/$defs/IntermicrobialInteraction"
             },
-            "type": "object"
+            "type": "array"
         }
     },
     "title": "miiid-schema",

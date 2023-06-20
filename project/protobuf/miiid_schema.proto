@@ -1,13 +1,13 @@
-// Represents a IntermicrobialInteraction
+// Represents an interaction between microbial entities
 message IntermicrobialInteraction
  {
   uriorcurie id = 0
   string name = 0
   string description = 0
-  string primaryEmail = 0
-  date birthDate = 0
-  integer ageInYears = 0
-  personStatus vitalStatus = 0
+ repeated  string participants = 0
+ repeated  nCBITaxId taxId = 0
+  string evidenceType = 0
+  string reference = 0
  }
 // A holder for IntermicrobialInteraction objects
 message IntermicrobialInteractionCollection
