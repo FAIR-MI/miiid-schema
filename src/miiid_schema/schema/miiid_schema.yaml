@@ -88,7 +88,10 @@ types:
   NCBITaxId:
     description: >-
       Numeric identifier following the NCBI Taxonomy schema.
-    typeof: uriorcurie
-    base: string
-    pattern: 'NCBITaxon:\d+$'
+    base: int
+    uri: xsd:integer
+    minimum_value: 2
+    examples:
+      - value: 1043002 # strain level: Aureobasidium pullulans EXF-150
+      - value: 1236 # class level: Gammaproteobacteria
     exact_mappings: WIKIDATA_PROPERTY:P685
