@@ -112,25 +112,25 @@ enums:
   MethodType:
     description: List of methods used to determine interactions
     permissible_values:
-      Simulation-based:
+      simulation:
         description: Any type of biological computational model experiments
         meaning: EDAM.TOPIC:3524
         examples:
           - value: generalized Lotka-Volterra model
           - value: genome-scale metabolic model
-      Microscopy-based:
+      microscopy:
         description: Any type of imaging-related experiments
         meaning: EDAM.TOPIC:3382
         examples:
           - value: co-localization with fluorescent markers
           - value: assisted motility
-      Cultivation-based:
+      cultivation:
         description: Any laboratory procedure for growing microorganisms
         meaning: NCIT:C25300
         examples:
           - value: continuous co-culture in bioreactor
           - value: co-plating on solid media
-      Sample-based:
+      sample:
           description: Any type of experiments based on the analysis of a sample
           meaning: OBI:0000659
           examples:
