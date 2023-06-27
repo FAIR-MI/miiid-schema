@@ -105,7 +105,8 @@ types:
     examples:
       - value: 1043002 # strain level: Aureobasidium pullulans EXF-150
       - value: 1236 # class level: Gammaproteobacteria
-    exact_mappings: WIKIDATA_PROPERTY:P685
+    exact_mappings:
+      - WIKIDATA_PROPERTY:P685
 
 enums:
   MethodType:
@@ -114,22 +115,22 @@ enums:
         description: Any type of biological computational model experiments
         meaning: EDAM-TOPIC:3524
         examples:
-          - generalized Lotka-Volterra model
-          - genome-scale metabolic model
+          - value: generalized Lotka-Volterra model
+          - value: genome-scale metabolic model
       Microscopy-based:
         description: Any type of imaging-related experiments
         meaning: EDAM-TOPIC:3382
         examples:
-          - co-localization with fluorescent markers
-          - assisted motility
+          - value: co-localization with fluorescent markers
+          - value: assisted motility
       Cultivation-based:
         description: Any laboratory procedure for growing microorganisms
         meaning: NCIT:C25300
         examples:
-          - continuous co-culture in bioreactor
-          - co-plating on solid media
+          - value: continuous co-culture in bioreactor
+          - value: co-plating on solid media
       Sample-based:
           description: Any type of experiments based on the analysis of a sample
           meaning: OBI:0000659
           examples:
-            - co-occurrences drawn from analyses of abundances obtained from in situ or in vivo sampling
+            - value: co-occurrences drawn from analyses of abundances obtained from in situ or in vivo sampling
