@@ -31,5 +31,8 @@ Use the `make` command to generate project artefacts:
 
 ## Credits
 
-The metadata schema is based on the metadata suggested in Pacheco, A. R., Pauvert, C., Kishore, D., & Segrè, D. (2022). Toward FAIR Representations of Microbial Interactions. *MSystems, 7*(5). <https://doi.org/10.1128/msystems.00659-22>.
+The metadata schema is based on the metadata suggested in:
+
+> Pacheco, A. R., Pauvert, C., Kishore, D., & Segrè, D. (2022). Toward FAIR Representations of Microbial Interactions. *MSystems, 7*(5). <https://doi.org/10.1128/msystems.00659-22>.
+
 The schema is implemented using [LinkML](https://linkml.io) and the [linkml-project-cookiecutter](https://github.com/linkml/linkml-project-cookiecutter).
