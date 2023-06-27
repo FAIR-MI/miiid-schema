@@ -78,7 +78,7 @@ slots:
   tax_id:
     required: true
     any_of:
-      - range: NCBITaxId
+      - range: int
       - range: MissingValue
     multivalued: true
     description: NCBI Taxonomy identifiers at the relevant taxonomic level.
