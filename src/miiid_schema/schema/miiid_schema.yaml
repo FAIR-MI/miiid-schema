@@ -17,6 +17,7 @@ prefixes:
   EDAM_TOPIC: http://edamontology.org/topic_
   NCIT: http://purl.obolibrary.org/obo/NCIT_
   OBI: http://purl.obolibrary.org/obo/OBI_
+  GENEPIO: http://purl.obolibrary.org/obo/GENEPIO_
 default_prefix: miiid
 default_range: string
 
@@ -76,9 +77,12 @@ slots:
     description: Names of the microbial entities, with descriptions of any genetic manipulations performed.
   tax_id:
     required: true
-    range: NCBITaxId
+    any_of:
+      - range: NCBITaxId
+      - range: MissingValue
     multivalued: true
-    description: NCBI Taxonomy identifiers at the relevant taxonomic level. Novel taxa lacking identifiers are denoted by N/A.
+    description: NCBI Taxonomy identifiers at the relevant taxonomic level.
+    comments: For novel taxa lacking identifiers, please use the controlled vocabulary NOT_PROVIDED.
   evidence_type:
     required: true
     range: string
@@ -135,3 +139,26 @@ enums:
           meaning: OBI:0000659
           examples:
             - value: co-occurrences drawn from analyses of abundances obtained from in situ or in vivo sampling
+
+  MissingValue:
+    description: >-
+      List of missing values reporting terms according based on the International
+      Nucleotide Sequence Database Collaboration (INSDC )
+    permissible_values:
+      NOT_APPLICABLE:
+        description: >-
+          The information is inappropriate to report, this can indicate that the
+          standard itself fails to model or represent the information appropriately
+        meaning: GENEPIO:0001619
+      NOT_COLLECTED:
+        description: >-
+          The information of an expected format was not given because it has not been collected
+        meaning: GENEPIO:0001620
+      NOT_PROVIDED:
+        description: >-
+          The information of an expected format was not given, a value may be given at the later stage
+        meaning: GENEPIO:0001668
+      RESTRICTED_ACCESS:
+        description: >-
+          The information exists but can not be released openly because of privacy concerns
+        meaning: GENEPIO:0001810
