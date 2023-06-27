@@ -14,6 +14,9 @@ prefixes:
   linkml: https://w3id.org/linkml/
   schema: http://schema.org/
   WIKIDATA_PROPERTY: https://www.wikidata.org/prop/
+  EDAM-TOPIC: http://edamontology.org/topic_
+  NCIT: http://purl.obolibrary.org/obo/NCIT_
+  OBI: http://purl.obolibrary.org/obo/OBI_
 default_prefix: miiid
 default_range: string
 
@@ -39,6 +42,7 @@ classes:
       - participants
       - tax_id
       - evidence_type
+      - method_type
       - reference
 
   IntermicrobialInteractionCollection:
@@ -79,6 +83,11 @@ slots:
     required: true
     range: string
     description: Type of evidence used to determine the interaction using the Evidence and Conclusion Ontology.
+  method_type:
+    recommended: true
+    range: MethodType
+    multivalued: true
+    description: One or several of the types of methods used to determine the interaction.
   reference:
     required: true
     exact_mappings:
@@ -97,3 +106,30 @@ types:
       - value: 1043002 # strain level: Aureobasidium pullulans EXF-150
       - value: 1236 # class level: Gammaproteobacteria
     exact_mappings: WIKIDATA_PROPERTY:P685
+
+enums:
+  MethodType:
+    permissible_values:
+      Simulation-based:
+        description: Any type of biological computational model experiments
+        meaning: EDAM-TOPIC:3524
+        examples:
+          - generalized Lotka-Volterra model
+          - genome-scale metabolic model
+      Microscopy-based:
+        description: Any type of imaging-related experiments
+        meaning: EDAM-TOPIC:3382
+        examples:
+          - co-localization with fluorescent markers
+          - assisted motility
+      Cultivation-based:
+        description: Any laboratory procedure for growing microorganisms
+        meaning: NCIT:C25300
+        examples:
+          - continuous co-culture in bioreactor
+          - co-plating on solid media
+      Sample-based:
+          description: Any type of experiments based on the analysis of a sample
+          meaning: OBI:0000659
+          examples:
+            - co-occurrences drawn from analyses of abundances obtained from in situ or in vivo sampling
