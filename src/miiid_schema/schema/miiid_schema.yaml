@@ -110,6 +110,7 @@ types:
 
 enums:
   MethodType:
+    description: List of methods used to determine interactions
     permissible_values:
       Simulation-based:
         description: Any type of biological computational model experiments
