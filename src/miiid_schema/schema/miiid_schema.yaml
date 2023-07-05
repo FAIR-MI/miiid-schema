@@ -2,7 +2,7 @@
 id: https://w3id.org/FAIR-MI/miiid-schema
 name: miiid-schema
 title: miiid-schema
-version: 0.1.0
+version: 0.1.1
 description: |-
   Minimal Information about Intermicrobial Interaction Data schema
 license: GNU GPL v3.0
