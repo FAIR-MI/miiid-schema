@@ -20,7 +20,11 @@ Towards a Minimal Information about Intermicrobial Interaction Data schema
       Python datamodel
 * [tests/](tests/) - Python tests
 
+> Be sure to have a look at the [`CHANGELOG.md`](CHANGELOG.md) to know about the changes in the schema!
+
 ## Developer Documentation
+
+Interested in contributing to `miiid-schema`? Thanks, please make sure to read through [`CONTRIBUTING.md`](CONTRIBUTING.md) first.
 
 <details>
 Use the `make` command to generate project artefacts:

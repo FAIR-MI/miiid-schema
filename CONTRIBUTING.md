@@ -34,19 +34,19 @@ Please carefully read our [Code of Conduct](CODE_OF_CONDUCT.md).
 
 ### Reporting problems with the data model
 
-Please use our [Issue Tracker][issues] to report problems with the ontology.
+Please use our [Issue Tracker][issues] to report problems with the LinkML metadata schema
 
 <a id="requesting-terms"></a>
 
-### Requesting new terms
+### Requesting new properties
 
-Please use our [Issue Tracker][issues] to request a new term for the ontology.
+Please use our [Issue Tracker][issues] to request a new property for the schema.
 
 <a id="adding-terms"></a>
 
-### Adding new terms yourself
+### Adding new properties yourself
 
-Please submit a [Pull Request][pulls] to submit a new term for consideration.
+Please submit a [Pull Request][pulls] to submit a new property for consideration.
 
 <a id="best-practices"></a>
 
