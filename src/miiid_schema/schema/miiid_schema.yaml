@@ -102,6 +102,11 @@ slots:
     exact_mappings:
       - schema:url
     description: Persistent identifier (e.g. DOI or URL) to a resource, script, or article, documenting the method.
+  env_exp:
+    recommended: true
+    range: EnvExpId
+    description: >-
+      Biome term (from the Environmental Ontology) used in the experiment. Engineered ecosystems such as bioreactors, agar plates or computational models use N/A.
   participant_outcomes:
     recommended: true
     range: ParticipantOutcome
@@ -130,7 +135,14 @@ types:
       - value: "FJ627005.1"
       - value: "NZ_CP022412.2"
     exact_mappings:
-      - EDAM_DATA:1063
+     - EDAM_DATA:1063
+  EnvExpId:
+    description: >-
+      Term from the Environment Ontology following by their machine-actionable identifier.
+    base: str
+    uri: xsd:string
+    examples:
+      - value: "leaf [ENVO:0025034]"
 
 enums:
   MethodType:
