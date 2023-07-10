@@ -6,7 +6,7 @@ entries:
     tax_id:
       - 57723
       - 1236
-    evidence_type: high throughput evidence used in automatic assertion
+    evidence_type: high throughput evidence used in automatic assertion [ECO:0006057]
     reference: https://doi.org/10.1038/ismej.2011.119
   - id: miiid:ternary
     participants:
@@ -17,5 +17,5 @@ entries:
       - 354
       - 3055
       - 667197
-    evidence_type: experimental evidence used in manual assertion
+    evidence_type: experimental evidence used in manual assertion [ECO:0000269]
     reference: https://doi.org/10.1007/s12223-010-0067-9

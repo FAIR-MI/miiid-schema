@@ -5,5 +5,5 @@ participants:
 tax_id:
   - 57723
   - 1236
-evidence_type: high throughput evidence used in automatic assertion
+evidence_type: high throughput evidence used in automatic assertion # missing [ECO: ]
 reference: https://doi.org/10.1038/ismej.2011.119

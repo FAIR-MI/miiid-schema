@@ -92,6 +92,8 @@ slots:
     required: true
     range: string
     description: Type of evidence used to determine the interaction using the Evidence and Conclusion Ontology.
+    pattern: >-
+      [^\:\n\r]+\:[^\:\n\r]+
   method_type:
     recommended: true
     range: MethodType
@@ -107,6 +109,8 @@ slots:
     range: EnvExpId
     description: >-
       Biome term (from the Environmental Ontology) used in the experiment. Engineered ecosystems such as bioreactors, agar plates or computational models use N/A.
+    pattern: >-
+      [^\:\n\r]+\:[^\:\n\r]+
   participant_outcomes:
     recommended: true
     range: ParticipantOutcome
