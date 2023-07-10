@@ -1,0 +1,17 @@
+id: miiid:recommended
+participants:
+  - Bacteroides caccae ATCC 43185
+  - Lactobacillus rhamnosus GG
+tax_id:
+  - 411901
+  - 568703
+sequence_id:
+  - NZ_CP022412.2
+  - NZ_CP031290.1
+evidence_type: high throughput evidence used in automatic assertionnal evidence [ECO:0007672]
+method_type:
+  - simulation
+reference: https://doi.org.org/10.1038/nbt.3703
+participant_outcomes:
+  - positively
+  - positively
