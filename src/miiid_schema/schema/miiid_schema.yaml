@@ -15,6 +15,7 @@ prefixes:
   schema: http://schema.org/
   WIKIDATA_PROPERTY: https://www.wikidata.org/prop/
   EDAM_TOPIC: http://edamontology.org/topic_
+  EDAM_DATA: http://edamontology.org/data_
   NCIT: http://purl.obolibrary.org/obo/NCIT_
   OBI: http://purl.obolibrary.org/obo/OBI_
 default_prefix: miiid
@@ -41,6 +42,7 @@ classes:
     slots:
       - participants
       - tax_id
+      - sequence_id
       - evidence_type
       - method_type
       - reference
@@ -79,6 +81,11 @@ slots:
     range: NCBITaxId
     multivalued: true
     description: NCBI Taxonomy identifiers at the relevant taxonomic level. Novel taxa lacking identifiers are denoted by N/A.
+  sequence_id:
+    recommended: true
+    range: SequenceId
+    multivalued: true
+    description: Accession to the matching sequence data (e.g., genome, marker gene sequence).
   evidence_type:
     required: true
     range: string
@@ -107,6 +114,16 @@ types:
       - value: 1236 # class level: Gammaproteobacteria
     exact_mappings:
       - WIKIDATA_PROPERTY:P685
+  SequenceId:
+    description: >-
+      Sequence identifier to a (preferrably INSDC) database
+    base: string
+    uri: xsd:string
+    examples:
+      - value: FJ627005.1
+      - value: NZ_CP022412.2
+    exact_mappings:
+      - EDAM_DATA:1063
 
 enums:
   MethodType:
