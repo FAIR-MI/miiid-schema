@@ -18,6 +18,7 @@ prefixes:
   EDAM_DATA: http://edamontology.org/data_
   NCIT: http://purl.obolibrary.org/obo/NCIT_
   OBI: http://purl.obolibrary.org/obo/OBI_
+  GENEPIO: http://purl.obolibrary.org/obo/GENEPIO_
 default_prefix: miiid
 default_range: string
 
@@ -100,6 +101,11 @@ slots:
     exact_mappings:
       - schema:url
     description: Persistent identifier (e.g. DOI or URL) to a resource, script, or article, documenting the method.
+  participant_outcomes:
+    recommended: true
+    range: ParticipantOutcome
+    multivalued: true
+    description: Outcomes of each of the participants described in the interaction when known.
 
 
 types:
@@ -117,11 +123,11 @@ types:
   SequenceId:
     description: >-
       Sequence identifier to a (preferrably INSDC) database
-    base: string
+    base: str
     uri: xsd:string
     examples:
-      - value: FJ627005.1
-      - value: NZ_CP022412.2
+      - value: "FJ627005.1"
+      - value: "NZ_CP022412.2"
     exact_mappings:
       - EDAM_DATA:1063
 
@@ -152,3 +158,17 @@ enums:
           meaning: OBI:0000659
           examples:
             - value: co-occurrences drawn from analyses of abundances obtained from in situ or in vivo sampling
+  ParticipantOutcome:
+    description: Outcome indicating how each participant was affected
+    permissible_values:
+      0:
+        description: not affected
+      1:
+        description: positively affected
+      -1:
+        description: negatively affected
+      NOT_APPLICABLE:
+        description: >-
+          The information is inappropriate to report, this can indicate that the
+          standard itself fails to model or represent the information appropriately
+        meaning: GENEPIO:0001619
