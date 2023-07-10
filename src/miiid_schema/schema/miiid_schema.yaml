@@ -47,6 +47,7 @@ classes:
       - evidence_type
       - method_type
       - reference
+      - participant_outcomes
 
   IntermicrobialInteractionCollection:
     tree_root: true
@@ -161,13 +162,13 @@ enums:
   ParticipantOutcome:
     description: Outcome indicating how each participant was affected
     permissible_values:
-      0:
-        description: not affected
-      1:
-        description: positively affected
-      -1:
-        description: negatively affected
-      NOT_APPLICABLE:
+      not_affected:
+        description: usually encoded with numerical 0
+      positively:
+        description: usually encoded with +1
+      negatively:
+        description: usually encoded with -1
+      not_applicable:
         description: >-
           The information is inappropriate to report, this can indicate that the
           standard itself fails to model or represent the information appropriately
