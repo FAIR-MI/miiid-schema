@@ -34,3 +34,24 @@ CREATE TABLE "IntermicrobialInteraction_tax_id" (
 	PRIMARY KEY (backref_id, tax_id), 
 	FOREIGN KEY(backref_id) REFERENCES "IntermicrobialInteraction" (id)
 );
+
+CREATE TABLE "IntermicrobialInteraction_sequence_id" (
+	backref_id TEXT, 
+	sequence_id TEXT, 
+	PRIMARY KEY (backref_id, sequence_id), 
+	FOREIGN KEY(backref_id) REFERENCES "IntermicrobialInteraction" (id)
+);
+
+CREATE TABLE "IntermicrobialInteraction_method_type" (
+	backref_id TEXT, 
+	method_type VARCHAR(11), 
+	PRIMARY KEY (backref_id, method_type), 
+	FOREIGN KEY(backref_id) REFERENCES "IntermicrobialInteraction" (id)
+);
+
+CREATE TABLE "IntermicrobialInteraction_participant_outcomes" (
+	backref_id TEXT, 
+	participant_outcomes VARCHAR(14), 
+	PRIMARY KEY (backref_id, participant_outcomes), 
+	FOREIGN KEY(backref_id) REFERENCES "IntermicrobialInteraction" (id)
+);

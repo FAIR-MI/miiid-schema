@@ -6,6 +6,7 @@
     "https://FAIR-MI.github.io/miiid-schema"
   ],
   "id": "https://w3id.org/FAIR-MI/miiid-schema",
+  "version": "0.2.0",
   "imports": [
     "linkml:types"
   ],
@@ -26,6 +27,26 @@
     {
       "prefix_prefix": "WIKIDATA_PROPERTY",
       "prefix_reference": "https://www.wikidata.org/prop/"
+    },
+    {
+      "prefix_prefix": "EDAM_TOPIC",
+      "prefix_reference": "http://edamontology.org/topic_"
+    },
+    {
+      "prefix_prefix": "EDAM_DATA",
+      "prefix_reference": "http://edamontology.org/data_"
+    },
+    {
+      "prefix_prefix": "NCIT",
+      "prefix_reference": "http://purl.obolibrary.org/obo/NCIT_"
+    },
+    {
+      "prefix_prefix": "OBI",
+      "prefix_reference": "http://purl.obolibrary.org/obo/OBI_"
+    },
+    {
+      "prefix_prefix": "GENEPIO",
+      "prefix_reference": "http://purl.obolibrary.org/obo/GENEPIO_"
     }
   ],
   "default_prefix": "miiid",
@@ -52,6 +73,43 @@
       "base": "int",
       "uri": "http://www.w3.org/2001/XMLSchema#integer",
       "minimum_value": 2,
+      "@type": "TypeDefinition"
+    },
+    {
+      "name": "SequenceId",
+      "definition_uri": "https://w3id.org/FAIR-MI/miiid/SequenceId",
+      "description": "Sequence identifier to a (preferrably INSDC) database",
+      "examples": [
+        {
+          "value": "FJ627005.1",
+          "@type": "Example"
+        },
+        {
+          "value": "NZ_CP022412.2",
+          "@type": "Example"
+        }
+      ],
+      "from_schema": "https://w3id.org/FAIR-MI/miiid-schema",
+      "exact_mappings": [
+        "EDAM_DATA:1063"
+      ],
+      "base": "str",
+      "uri": "http://www.w3.org/2001/XMLSchema#string",
+      "@type": "TypeDefinition"
+    },
+    {
+      "name": "EnvExpId",
+      "definition_uri": "https://w3id.org/FAIR-MI/miiid/EnvExpId",
+      "description": "Term from the Environment Ontology following by their machine-actionable identifier.",
+      "examples": [
+        {
+          "value": "leaf [ENVO:0025034]",
+          "@type": "Example"
+        }
+      ],
+      "from_schema": "https://w3id.org/FAIR-MI/miiid-schema",
+      "base": "str",
+      "uri": "http://www.w3.org/2001/XMLSchema#string",
       "@type": "TypeDefinition"
     },
     {
@@ -310,6 +368,90 @@
       "@type": "TypeDefinition"
     }
   ],
+  "enums": [
+    {
+      "name": "MethodType",
+      "definition_uri": "https://w3id.org/FAIR-MI/miiid/MethodType",
+      "description": "List of methods used to determine interactions",
+      "from_schema": "https://w3id.org/FAIR-MI/miiid-schema",
+      "permissible_values": [
+        {
+          "text": "simulation",
+          "description": "Any type of biological computational model experiments",
+          "meaning": "EDAM_TOPIC:3524",
+          "examples": [
+            {
+              "value": "generalized Lotka-Volterra model"
+            },
+            {
+              "value": "genome-scale metabolic model"
+            }
+          ]
+        },
+        {
+          "text": "microscopy",
+          "description": "Any type of imaging-related experiments",
+          "meaning": "EDAM_TOPIC:3382",
+          "examples": [
+            {
+              "value": "co-localization with fluorescent markers"
+            },
+            {
+              "value": "assisted motility"
+            }
+          ]
+        },
+        {
+          "text": "cultivation",
+          "description": "Any laboratory procedure for growing microorganisms",
+          "meaning": "NCIT:C25300",
+          "examples": [
+            {
+              "value": "continuous co-culture in bioreactor"
+            },
+            {
+              "value": "co-plating on solid media"
+            }
+          ]
+        },
+        {
+          "text": "sample",
+          "description": "Any type of experiments based on the analysis of a sample",
+          "meaning": "OBI:0000659",
+          "examples": [
+            {
+              "value": "co-occurrences drawn from analyses of abundances obtained from in situ or in vivo sampling"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "ParticipantOutcome",
+      "definition_uri": "https://w3id.org/FAIR-MI/miiid/ParticipantOutcome",
+      "description": "Outcome indicating how each participant was affected",
+      "from_schema": "https://w3id.org/FAIR-MI/miiid-schema",
+      "permissible_values": [
+        {
+          "text": "not_affected",
+          "description": "usually encoded with numerical 0"
+        },
+        {
+          "text": "positively",
+          "description": "usually encoded with +1"
+        },
+        {
+          "text": "negatively",
+          "description": "usually encoded with -1"
+        },
+        {
+          "text": "not_applicable",
+          "description": "The information is inappropriate to report, this can indicate that the standard itself fails to model or represent the information appropriately",
+          "meaning": "GENEPIO:0001619"
+        }
+      ]
+    }
+  ],
   "slots": [
     {
       "name": "id",
@@ -392,6 +534,21 @@
       "@type": "SlotDefinition"
     },
     {
+      "name": "sequence_id",
+      "definition_uri": "https://w3id.org/FAIR-MI/miiid/sequence_id",
+      "description": "Accession to the matching sequence data (e.g., genome, marker gene sequence).",
+      "from_schema": "https://w3id.org/FAIR-MI/miiid-schema",
+      "slot_uri": "https://w3id.org/FAIR-MI/miiid/sequence_id",
+      "multivalued": true,
+      "owner": "IntermicrobialInteraction",
+      "domain_of": [
+        "IntermicrobialInteraction"
+      ],
+      "range": "SequenceId",
+      "recommended": true,
+      "@type": "SlotDefinition"
+    },
+    {
       "name": "evidence_type",
       "definition_uri": "https://w3id.org/FAIR-MI/miiid/evidence_type",
       "description": "Type of evidence used to determine the interaction using the Evidence and Conclusion Ontology.",
@@ -403,6 +560,22 @@
       ],
       "range": "string",
       "required": true,
+      "pattern": "[^\\:\\n\\r]+\\:[^\\:\\n\\r]+",
+      "@type": "SlotDefinition"
+    },
+    {
+      "name": "method_type",
+      "definition_uri": "https://w3id.org/FAIR-MI/miiid/method_type",
+      "description": "One or several of the types of methods used to determine the interaction.",
+      "from_schema": "https://w3id.org/FAIR-MI/miiid-schema",
+      "slot_uri": "https://w3id.org/FAIR-MI/miiid/method_type",
+      "multivalued": true,
+      "owner": "IntermicrobialInteraction",
+      "domain_of": [
+        "IntermicrobialInteraction"
+      ],
+      "range": "MethodType",
+      "recommended": true,
       "@type": "SlotDefinition"
     },
     {
@@ -420,6 +593,32 @@
       ],
       "range": "string",
       "required": true,
+      "@type": "SlotDefinition"
+    },
+    {
+      "name": "env_exp",
+      "definition_uri": "https://w3id.org/FAIR-MI/miiid/env_exp",
+      "description": "Biome term (from the Environmental Ontology) used in the experiment. Engineered ecosystems such as bioreactors, agar plates or computational models use N/A.",
+      "from_schema": "https://w3id.org/FAIR-MI/miiid-schema",
+      "slot_uri": "https://w3id.org/FAIR-MI/miiid/env_exp",
+      "range": "EnvExpId",
+      "recommended": true,
+      "pattern": "[^\\:\\n\\r]+\\:[^\\:\\n\\r]+",
+      "@type": "SlotDefinition"
+    },
+    {
+      "name": "participant_outcomes",
+      "definition_uri": "https://w3id.org/FAIR-MI/miiid/participant_outcomes",
+      "description": "Outcomes of each of the participants described in the interaction when known.",
+      "from_schema": "https://w3id.org/FAIR-MI/miiid-schema",
+      "slot_uri": "https://w3id.org/FAIR-MI/miiid/participant_outcomes",
+      "multivalued": true,
+      "owner": "IntermicrobialInteraction",
+      "domain_of": [
+        "IntermicrobialInteraction"
+      ],
+      "range": "ParticipantOutcome",
+      "recommended": true,
       "@type": "SlotDefinition"
     },
     {
@@ -469,8 +668,11 @@
         "description",
         "participants",
         "tax_id",
+        "sequence_id",
         "evidence_type",
-        "reference"
+        "method_type",
+        "reference",
+        "participant_outcomes"
       ],
       "slot_usage": {},
       "class_uri": "https://w3id.org/FAIR-MI/miiid/IntermicrobialInteraction",
@@ -502,9 +704,9 @@
   ],
   "metamodel_version": "1.7.0",
   "source_file": "miiid_schema.yaml",
-  "source_file_date": "2023-06-20T16:44:02",
-  "source_file_size": 2699,
-  "generation_date": "2023-06-20T17:04:24",
+  "source_file_date": "2023-07-10T22:43:36",
+  "source_file_size": 5975,
+  "generation_date": "2023-07-10T22:44:49",
   "@type": "SchemaDefinition",
   "@context": [
     "project/jsonld/miiid_schema.context.jsonld",

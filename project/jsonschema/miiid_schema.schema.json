@@ -10,15 +10,30 @@
                 },
                 "evidence_type": {
                     "description": "Type of evidence used to determine the interaction using the Evidence and Conclusion Ontology.",
+                    "pattern": "[^\\:\\n\\r]+\\:[^\\:\\n\\r]+",
                     "type": "string"
                 },
                 "id": {
                     "description": "A unique identifier for a thing",
                     "type": "string"
                 },
+                "method_type": {
+                    "description": "One or several of the types of methods used to determine the interaction.",
+                    "items": {
+                        "$ref": "#/$defs/MethodType"
+                    },
+                    "type": "array"
+                },
                 "name": {
                     "description": "A human-readable name for a thing",
                     "type": "string"
+                },
+                "participant_outcomes": {
+                    "description": "Outcomes of each of the participants described in the interaction when known.",
+                    "items": {
+                        "$ref": "#/$defs/ParticipantOutcome"
+                    },
+                    "type": "array"
                 },
                 "participants": {
                     "description": "Names of the microbial entities, with descriptions of any genetic manipulations performed.",
@@ -30,6 +45,13 @@
                 "reference": {
                     "description": "Persistent identifier (e.g. DOI or URL) to a resource, script, or article, documenting the method.",
                     "type": "string"
+                },
+                "sequence_id": {
+                    "description": "Accession to the matching sequence data (e.g., genome, marker gene sequence).",
+                    "items": {
+                        "type": "string"
+                    },
+                    "type": "array"
                 },
                 "tax_id": {
                     "description": "NCBI Taxonomy identifiers at the relevant taxonomic level. Novel taxa lacking identifiers are denoted by N/A.",
@@ -64,6 +86,17 @@
             "title": "IntermicrobialInteractionCollection",
             "type": "object"
         },
+        "MethodType": {
+            "description": "List of methods used to determine interactions",
+            "enum": [
+                "simulation",
+                "microscopy",
+                "cultivation",
+                "sample"
+            ],
+            "title": "MethodType",
+            "type": "string"
+        },
         "NamedThing": {
             "additionalProperties": false,
             "description": "A generic grouping for any identifiable entity",
@@ -86,6 +119,17 @@
             ],
             "title": "NamedThing",
             "type": "object"
+        },
+        "ParticipantOutcome": {
+            "description": "Outcome indicating how each participant was affected",
+            "enum": [
+                "not_affected",
+                "positively",
+                "negatively",
+                "not_applicable"
+            ],
+            "title": "ParticipantOutcome",
+            "type": "string"
         }
     },
     "$id": "https://w3id.org/FAIR-MI/miiid-schema",
@@ -104,5 +148,5 @@
     },
     "title": "miiid-schema",
     "type": "object",
-    "version": null
+    "version": "0.2.0"
 }

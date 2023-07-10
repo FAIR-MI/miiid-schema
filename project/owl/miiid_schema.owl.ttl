@@ -1,4 +1,8 @@
+@prefix EDAM_TOPIC: <http://edamontology.org/topic_> .
+@prefix GENEPIO: <http://purl.obolibrary.org/obo/GENEPIO_> .
 @prefix IAO: <http://purl.obolibrary.org/obo/IAO_> .
+@prefix NCIT: <http://purl.obolibrary.org/obo/NCIT_> .
+@prefix OBI: <http://purl.obolibrary.org/obo/OBI_> .
 @prefix linkml: <https://w3id.org/linkml/> .
 @prefix miiid: <https://w3id.org/FAIR-MI/miiid/> .
 @prefix owl: <http://www.w3.org/2002/07/owl#> .
@@ -15,7 +19,21 @@
     linkml:id "https://w3id.org/FAIR-MI/miiid-schema" ;
     linkml:imports "linkml:types" .
 
+miiid:env_exp a owl:ObjectProperty,
+        linkml:SlotDefinition ;
+    rdfs:label "env_exp" ;
+    rdfs:range miiid:EnvExpId ;
+    skos:definition "Biome term (from the Environmental Ontology) used in the experiment. Engineered ecosystems such as bioreactors, agar plates or computational models use N/A." .
+
 linkml:SubsetDefinition a owl:Class .
+
+miiid:EnvExpId a owl:Class,
+        linkml:TypeDefinition ;
+    rdfs:label "EnvExpId" ;
+    rdfs:subClassOf [ a owl:Restriction ;
+            owl:onDataRange xsd:string ;
+            owl:onProperty linkml:topValue ;
+            owl:qualifiedCardinality 1 ] .
 
 miiid:IntermicrobialInteractionCollection a owl:Class,
         linkml:ClassDefinition ;
@@ -37,6 +55,18 @@ miiid:evidence_type a owl:ObjectProperty,
     rdfs:range linkml:String ;
     skos:definition "Type of evidence used to determine the interaction using the Evidence and Conclusion Ontology." .
 
+miiid:method_type a owl:ObjectProperty,
+        linkml:SlotDefinition ;
+    rdfs:label "method_type" ;
+    rdfs:range miiid:MethodType ;
+    skos:definition "One or several of the types of methods used to determine the interaction." .
+
+miiid:participant_outcomes a owl:ObjectProperty,
+        linkml:SlotDefinition ;
+    rdfs:label "participant_outcomes" ;
+    rdfs:range miiid:ParticipantOutcome ;
+    skos:definition "Outcomes of each of the participants described in the interaction when known." .
+
 miiid:reference a owl:ObjectProperty,
         linkml:SlotDefinition ;
     rdfs:label "reference" ;
@@ -44,10 +74,31 @@ miiid:reference a owl:ObjectProperty,
     skos:definition "Persistent identifier (e.g. DOI or URL) to a resource, script, or article, documenting the method." ;
     skos:exactMatch schema1:url .
 
-linkml:TypeDefinition a owl:Class .
+miiid:sequence_id a owl:ObjectProperty,
+        linkml:SlotDefinition ;
+    rdfs:label "sequence_id" ;
+    rdfs:range miiid:SequenceId ;
+    skos:definition "Accession to the matching sequence data (e.g., genome, marker gene sequence)." .
 
-linkml:topValue a owl:DatatypeProperty ;
-    rdfs:label "value" .
+EDAM_TOPIC:3382 a owl:Class,
+        miiid:MethodType ;
+    rdfs:label "microscopy" .
+
+EDAM_TOPIC:3524 a owl:Class,
+        miiid:MethodType ;
+    rdfs:label "simulation" .
+
+GENEPIO:0001619 a owl:Class,
+        miiid:ParticipantOutcome ;
+    rdfs:label "not_applicable" .
+
+NCIT:C25300 a owl:Class,
+        miiid:MethodType ;
+    rdfs:label "cultivation" .
+
+OBI:0000659 a owl:Class,
+        miiid:MethodType ;
+    rdfs:label "sample" .
 
 schema1:description a owl:ObjectProperty,
         linkml:SlotDefinition ;
@@ -74,9 +125,17 @@ miiid:IntermicrobialInteraction a owl:Class,
         linkml:ClassDefinition ;
     rdfs:label "IntermicrobialInteraction" ;
     rdfs:subClassOf [ a owl:Restriction ;
-            owl:onClass linkml:String ;
-            owl:onProperty miiid:evidence_type ;
-            owl:qualifiedCardinality 1 ],
+            owl:allValuesFrom miiid:MethodType ;
+            owl:onProperty miiid:method_type ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom miiid:SequenceId ;
+            owl:onProperty miiid:sequence_id ],
+        [ a owl:Class ;
+            owl:intersectionOf ( [ a owl:Restriction ;
+                        owl:allValuesFrom miiid:NCBITaxId ;
+                        owl:onProperty miiid:tax_id ] [ a owl:Restriction ;
+                        owl:onProperty miiid:tax_id ;
+                        owl:someValuesFrom miiid:NCBITaxId ] ) ],
         [ a owl:Class ;
             owl:intersectionOf ( [ a owl:Restriction ;
                         owl:allValuesFrom linkml:String ;
@@ -85,14 +144,15 @@ miiid:IntermicrobialInteraction a owl:Class,
                         owl:someValuesFrom linkml:String ] ) ],
         [ a owl:Restriction ;
             owl:onClass linkml:String ;
+            owl:onProperty miiid:evidence_type ;
+            owl:qualifiedCardinality 1 ],
+        [ a owl:Restriction ;
+            owl:onClass linkml:String ;
             owl:onProperty miiid:reference ;
             owl:qualifiedCardinality 1 ],
-        [ a owl:Class ;
-            owl:intersectionOf ( [ a owl:Restriction ;
-                        owl:allValuesFrom miiid:NCBITaxId ;
-                        owl:onProperty miiid:tax_id ] [ a owl:Restriction ;
-                        owl:onProperty miiid:tax_id ;
-                        owl:someValuesFrom miiid:NCBITaxId ] ) ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom miiid:ParticipantOutcome ;
+            owl:onProperty miiid:participant_outcomes ],
         miiid:NamedThing ;
     skos:definition "Represents an interaction between microbial entities" .
 
@@ -106,13 +166,33 @@ miiid:NamedThing a owl:Class,
         [ a owl:Restriction ;
             owl:maxQualifiedCardinality 1 ;
             owl:onClass linkml:String ;
-            owl:onProperty schema1:description ],
+            owl:onProperty schema1:name ],
         [ a owl:Restriction ;
             owl:maxQualifiedCardinality 1 ;
             owl:onClass linkml:String ;
-            owl:onProperty schema1:name ] ;
+            owl:onProperty schema1:description ] ;
     skos:definition "A generic grouping for any identifiable entity" ;
     skos:exactMatch schema1:Thing .
+
+<https://w3id.org/FAIR-MI/miiid/ParticipantOutcome#negatively> a owl:Class,
+        miiid:ParticipantOutcome ;
+    rdfs:label "negatively" .
+
+<https://w3id.org/FAIR-MI/miiid/ParticipantOutcome#not_affected> a owl:Class,
+        miiid:ParticipantOutcome ;
+    rdfs:label "not_affected" .
+
+<https://w3id.org/FAIR-MI/miiid/ParticipantOutcome#positively> a owl:Class,
+        miiid:ParticipantOutcome ;
+    rdfs:label "positively" .
+
+miiid:SequenceId a owl:Class,
+        linkml:TypeDefinition ;
+    rdfs:label "SequenceId" ;
+    rdfs:subClassOf [ a owl:Restriction ;
+            owl:onDataRange xsd:string ;
+            owl:onProperty linkml:topValue ;
+            owl:qualifiedCardinality 1 ] .
 
 miiid:participants a owl:ObjectProperty,
         linkml:SlotDefinition ;
@@ -135,6 +215,29 @@ miiid:NCBITaxId a owl:Class,
             owl:qualifiedCardinality 1 ] .
 
 linkml:ClassDefinition a owl:Class .
+
+linkml:TypeDefinition a owl:Class .
+
+linkml:topValue a owl:DatatypeProperty ;
+    rdfs:label "value" .
+
+miiid:MethodType a owl:Class,
+        linkml:EnumDefinition ;
+    rdfs:label "MethodType" ;
+    owl:unionOf ( EDAM_TOPIC:3524 EDAM_TOPIC:3382 NCIT:C25300 OBI:0000659 ) ;
+    linkml:permissible_values EDAM_TOPIC:3382,
+        EDAM_TOPIC:3524,
+        NCIT:C25300,
+        OBI:0000659 .
+
+miiid:ParticipantOutcome a owl:Class,
+        linkml:EnumDefinition ;
+    rdfs:label "ParticipantOutcome" ;
+    owl:unionOf ( <https://w3id.org/FAIR-MI/miiid/ParticipantOutcome#not_affected> <https://w3id.org/FAIR-MI/miiid/ParticipantOutcome#positively> <https://w3id.org/FAIR-MI/miiid/ParticipantOutcome#negatively> GENEPIO:0001619 ) ;
+    linkml:permissible_values GENEPIO:0001619,
+        <https://w3id.org/FAIR-MI/miiid/ParticipantOutcome#negatively>,
+        <https://w3id.org/FAIR-MI/miiid/ParticipantOutcome#not_affected>,
+        <https://w3id.org/FAIR-MI/miiid/ParticipantOutcome#positively> .
 
 linkml:SlotDefinition a owl:Class .
 

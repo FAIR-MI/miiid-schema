@@ -6,8 +6,11 @@ message IntermicrobialInteraction
   string description = 0
  repeated  string participants = 0
  repeated  nCBITaxId taxId = 0
+ repeated  sequenceId sequenceId = 0
   string evidenceType = 0
+ repeated  methodType methodType = 0
   string reference = 0
+ repeated  participantOutcome participantOutcomes = 0
  }
 // A holder for IntermicrobialInteraction objects
 message IntermicrobialInteractionCollection

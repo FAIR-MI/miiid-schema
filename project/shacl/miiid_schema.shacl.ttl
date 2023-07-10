@@ -1,3 +1,7 @@
+@prefix EDAM_TOPIC: <http://edamontology.org/topic_> .
+@prefix GENEPIO: <http://purl.obolibrary.org/obo/GENEPIO_> .
+@prefix NCIT: <http://purl.obolibrary.org/obo/NCIT_> .
+@prefix OBI: <http://purl.obolibrary.org/obo/OBI_> .
 @prefix miiid: <https://w3id.org/FAIR-MI/miiid/> .
 @prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
 @prefix schema1: <http://schema.org/> .
@@ -12,14 +16,14 @@ schema1:Thing a sh:NodeShape ;
             sh:maxCount 1 ;
             sh:order 2 ;
             sh:path schema1:description ],
-        [ sh:description "A unique identifier for a thing" ;
-            sh:maxCount 1 ;
-            sh:order 0 ;
-            sh:path schema1:identifier ],
         [ sh:description "A human-readable name for a thing" ;
             sh:maxCount 1 ;
             sh:order 1 ;
-            sh:path schema1:name ] ;
+            sh:path schema1:name ],
+        [ sh:description "A unique identifier for a thing" ;
+            sh:maxCount 1 ;
+            sh:order 0 ;
+            sh:path schema1:identifier ] ;
     sh:targetClass schema1:Thing .
 
 miiid:IntermicrobialInteractionCollection a sh:NodeShape ;
@@ -37,36 +41,48 @@ miiid:IntermicrobialInteraction a sh:NodeShape ;
     sh:closed true ;
     sh:description "Represents an interaction between microbial entities" ;
     sh:ignoredProperties ( rdf:type ) ;
-    sh:property [ sh:description "A unique identifier for a thing" ;
+    sh:property [ sh:description "Accession to the matching sequence data (e.g., genome, marker gene sequence)." ;
+            sh:order 2 ;
+            sh:path miiid:sequence_id ],
+        [ sh:description "Type of evidence used to determine the interaction using the Evidence and Conclusion Ontology." ;
             sh:maxCount 1 ;
             sh:minCount 1 ;
-            sh:order 4 ;
+            sh:order 3 ;
+            sh:path miiid:evidence_type ;
+            sh:pattern "[^\\:\\n\\r]+\\:[^\\:\\n\\r]+" ],
+        [ sh:description "Outcomes of each of the participants described in the interaction when known." ;
+            sh:in ( "not_affected" "positively" "negatively" GENEPIO:0001619 ) ;
+            sh:order 6 ;
+            sh:path miiid:participant_outcomes ],
+        [ sh:description "A unique identifier for a thing" ;
+            sh:maxCount 1 ;
+            sh:minCount 1 ;
+            sh:order 7 ;
             sh:path schema1:identifier ],
+        [ sh:description "One or several of the types of methods used to determine the interaction." ;
+            sh:in ( EDAM_TOPIC:3524 EDAM_TOPIC:3382 NCIT:C25300 OBI:0000659 ) ;
+            sh:order 4 ;
+            sh:path miiid:method_type ],
+        [ sh:description "Persistent identifier (e.g. DOI or URL) to a resource, script, or article, documenting the method." ;
+            sh:maxCount 1 ;
+            sh:minCount 1 ;
+            sh:order 5 ;
+            sh:path miiid:reference ],
+        [ sh:description "A human-readable description for a thing" ;
+            sh:maxCount 1 ;
+            sh:order 9 ;
+            sh:path schema1:description ],
+        [ sh:description "NCBI Taxonomy identifiers at the relevant taxonomic level. Novel taxa lacking identifiers are denoted by N/A." ;
+            sh:minCount 1 ;
+            sh:order 1 ;
+            sh:path miiid:tax_id ],
         [ sh:description "A human-readable name for a thing" ;
             sh:maxCount 1 ;
-            sh:order 5 ;
+            sh:order 8 ;
             sh:path schema1:name ],
         [ sh:description "Names of the microbial entities, with descriptions of any genetic manipulations performed." ;
             sh:minCount 1 ;
             sh:order 0 ;
-            sh:path miiid:participants ],
-        [ sh:description "Type of evidence used to determine the interaction using the Evidence and Conclusion Ontology." ;
-            sh:maxCount 1 ;
-            sh:minCount 1 ;
-            sh:order 2 ;
-            sh:path miiid:evidence_type ],
-        [ sh:description "A human-readable description for a thing" ;
-            sh:maxCount 1 ;
-            sh:order 6 ;
-            sh:path schema1:description ],
-        [ sh:description "Persistent identifier (e.g. DOI or URL) to a resource, script, or article, documenting the method." ;
-            sh:maxCount 1 ;
-            sh:minCount 1 ;
-            sh:order 3 ;
-            sh:path miiid:reference ],
-        [ sh:description "NCBI Taxonomy identifiers at the relevant taxonomic level. Novel taxa lacking identifiers are denoted by N/A." ;
-            sh:minCount 1 ;
-            sh:order 1 ;
-            sh:path miiid:tax_id ] ;
+            sh:path miiid:participants ] ;
     sh:targetClass miiid:IntermicrobialInteraction .
 

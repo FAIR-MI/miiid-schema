@@ -7,6 +7,10 @@ PREFIX schema1: <http://schema.org/>
 
 <NCBITaxId> xsd:integer
 
+<SequenceId> xsd:string
+
+<EnvExpId> xsd:string
+
 linkml:String xsd:string
 
 linkml:Integer xsd:integer
@@ -50,8 +54,11 @@ linkml:Sparqlpath xsd:string
           rdf:type [ schema1:Thing ] ? ;
           <participants> @linkml:String + ;
           <tax_id> @<NCBITaxId> + ;
+          <sequence_id> @<SequenceId> * ;
           <evidence_type> @linkml:String ;
-          <reference> @linkml:String
+          <method_type> @<MethodType> * ;
+          <reference> @linkml:String ;
+          <participant_outcomes> @<ParticipantOutcome> *
        ) ;
        rdf:type [ <IntermicrobialInteraction> ]
     )

@@ -5,8 +5,11 @@ type IntermicrobialInteraction
     description: String
     participants: [String]!
     taxId: [NCBITaxId]!
+    sequenceId: [SequenceId]
     evidenceType: String!
+    methodType: [MethodType]
     reference: String!
+    participantOutcomes: [ParticipantOutcome]
   }
 
 type IntermicrobialInteractionCollection

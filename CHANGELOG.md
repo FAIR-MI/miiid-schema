@@ -1,5 +1,15 @@
 # Changelog
 
+## [0.2.0] - 2023-07-10
+
+### Changed
+
+- Breaking: Ontology-related slots are constraint by regular expression ([#8](https://github.com/FAIR-MI/miiid-schema/issues/8))
+
+### Added
+
+- Add recommended properties (in increasing constraint order: `sequence_id`, `env_exp`, `participant_outcomes`) ([#12](https://github.com/FAIR-MI/miiid-schema/issues/12))
+
 ## [0.1.1] - 2023-07-05
 
 ### Added
@@ -17,6 +27,8 @@
 
 :seedling: Initial release.
 
+
+[0.2.0]: https://fair-mi.github.io/miiid-schema/releases/tag/v0.2.0
 
 [0.1.1]: https://fair-mi.github.io/miiid-schema/releases/tag/v0.1.1
 

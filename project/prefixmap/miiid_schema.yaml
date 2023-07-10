@@ -1,4 +1,9 @@
 {
+   "EDAM_DATA": "http://edamontology.org/data_",
+   "EDAM_TOPIC": "http://edamontology.org/topic_",
+   "GENEPIO": "http://purl.obolibrary.org/obo/GENEPIO_",
+   "NCIT": "http://purl.obolibrary.org/obo/NCIT_",
+   "OBI": "http://purl.obolibrary.org/obo/OBI_",
    "WIKIDATA_PROPERTY": "https://www.wikidata.org/prop/",
    "linkml": "https://w3id.org/linkml/",
    "miiid": "https://w3id.org/FAIR-MI/miiid/",
