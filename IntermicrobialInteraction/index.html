@@ -217,11 +217,21 @@
 
       IntermicrobialInteraction : id
 
+      IntermicrobialInteraction : method_type
+
+          IntermicrobialInteraction --|&gt; MethodType : method_type
+
       IntermicrobialInteraction : name
+
+      IntermicrobialInteraction : participant_outcomes
+
+          IntermicrobialInteraction --|&gt; ParticipantOutcome : participant_outcomes
 
       IntermicrobialInteraction : participants
 
       IntermicrobialInteraction : reference
+
+      IntermicrobialInteraction : sequence_id
 
       IntermicrobialInteraction : tax_id
 
@@ -258,15 +268,33 @@
 <td>direct</td>
 </tr>
 <tr>
+<td><a href="../sequence_id/">sequence_id</a></td>
+<td>0..* <em>recommended</em> <br/> <a href="../SequenceId/">SequenceId</a></td>
+<td>Accession to the matching sequence data (e</td>
+<td>direct</td>
+</tr>
+<tr>
 <td><a href="../evidence_type/">evidence_type</a></td>
 <td>1..1 <br/> <a href="../String/">String</a></td>
 <td>Type of evidence used to determine the interaction using the Evidence and Con...</td>
 <td>direct</td>
 </tr>
 <tr>
+<td><a href="../method_type/">method_type</a></td>
+<td>0..* <em>recommended</em> <br/> <a href="../MethodType/">MethodType</a></td>
+<td>One or several of the types of methods used to determine the interaction</td>
+<td>direct</td>
+</tr>
+<tr>
 <td><a href="../reference/">reference</a></td>
 <td>1..1 <br/> <a href="../String/">String</a></td>
 <td>Persistent identifier (e</td>
+<td>direct</td>
+</tr>
+<tr>
+<td><a href="../participant_outcomes/">participant_outcomes</a></td>
+<td>0..* <em>recommended</em> <br/> <a href="../ParticipantOutcome/">ParticipantOutcome</a></td>
+<td>Outcomes of each of the participants described in the interaction when known</td>
 <td>direct</td>
 </tr>
 <tr>
@@ -343,8 +371,11 @@ is_a: NamedThing
 slots:
 - participants
 - tax_id
+- sequence_id
 - evidence_type
+- method_type
 - reference
+- participant_outcomes
 
 </code></pre>
 </details>
@@ -381,6 +412,19 @@ attributes:
     - IntermicrobialInteraction
     range: NCBITaxId
     required: true
+  sequence_id:
+    name: sequence_id
+    description: Accession to the matching sequence data (e.g., genome, marker gene
+      sequence).
+    from_schema: https://w3id.org/FAIR-MI/miiid-schema
+    rank: 1000
+    multivalued: true
+    alias: sequence_id
+    owner: IntermicrobialInteraction
+    domain_of:
+    - IntermicrobialInteraction
+    range: SequenceId
+    recommended: true
   evidence_type:
     name: evidence_type
     description: Type of evidence used to determine the interaction using the Evidence
@@ -393,6 +437,19 @@ attributes:
     - IntermicrobialInteraction
     range: string
     required: true
+    pattern: '[^\:\n\r]+\:[^\:\n\r]+'
+  method_type:
+    name: method_type
+    description: One or several of the types of methods used to determine the interaction.
+    from_schema: https://w3id.org/FAIR-MI/miiid-schema
+    rank: 1000
+    multivalued: true
+    alias: method_type
+    owner: IntermicrobialInteraction
+    domain_of:
+    - IntermicrobialInteraction
+    range: MethodType
+    recommended: true
   reference:
     name: reference
     description: Persistent identifier (e.g. DOI or URL) to a resource, script, or
@@ -407,6 +464,19 @@ attributes:
     - IntermicrobialInteraction
     range: string
     required: true
+  participant_outcomes:
+    name: participant_outcomes
+    description: Outcomes of each of the participants described in the interaction
+      when known.
+    from_schema: https://w3id.org/FAIR-MI/miiid-schema
+    rank: 1000
+    multivalued: true
+    alias: participant_outcomes
+    owner: IntermicrobialInteraction
+    domain_of:
+    - IntermicrobialInteraction
+    range: ParticipantOutcome
+    recommended: true
   id:
     name: id
     description: A unique identifier for a thing
