@@ -28,8 +28,8 @@
 :seedling: Initial release.
 
 
-[0.2.0]: https://fair-mi.github.io/miiid-schema/releases/tag/v0.2.0
+[0.2.0]: https://github.com/fair-mi/miiid-schema/releases/tag/v0.2.0
 
-[0.1.1]: https://fair-mi.github.io/miiid-schema/releases/tag/v0.1.1
+[0.1.1]: https://github.com/fair-mi/miiid-schema/releases/tag/v0.1.1
 
-[0.1.0]: https://fair-mi.github.io/miiid-schema/releases/tag/v0.1.0
+[0.1.0]: https://github.com/fair-mi/miiid-schema/releases/tag/v0.1.0
